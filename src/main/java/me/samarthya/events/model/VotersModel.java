@@ -1,5 +1,8 @@
 package me.samarthya.events.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -10,10 +13,12 @@ public class VotersModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "voterid")
+    @JsonIgnore
     private int iId;
 
     @NotNull
     @Column(name = "name")
+    @JsonProperty("name")
     private String sVoterName;
 
     public VotersModel() {

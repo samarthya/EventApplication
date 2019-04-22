@@ -1,4 +1,4 @@
-package me.samarthya.events.repository;
+package me.samarthya.events.jpa.repository;
 
 import me.samarthya.events.model.VotersModel;
 import org.springframework.data.repository.CrudRepository;

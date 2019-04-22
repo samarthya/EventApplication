@@ -4,8 +4,7 @@ import me.samarthya.events.model.EventsModel;
 import me.samarthya.events.model.LocationModel;
 import me.samarthya.events.model.SessionModel;
 import me.samarthya.events.model.VotersModel;
-import me.samarthya.events.repository.EventRepository;
-import org.springframework.context.annotation.Bean;
+import me.samarthya.events.jpa.repository.EventRepository;
 
 import java.util.Collections;
 import java.util.GregorianCalendar;

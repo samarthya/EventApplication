@@ -2,13 +2,14 @@ package me.samarthya.events;
 
 import me.samarthya.events.dummy.DummyValues;
 import me.samarthya.events.model.EventsModel;
-import me.samarthya.events.repository.EventRepository;
+import me.samarthya.events.jpa.repository.EventRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.ldap.core.LdapTemplate;
 
 /**
  * Annotates the class - SpringBootConfiguration, EnableAutoConfiguration, ComponentScan
@@ -24,7 +25,7 @@ public class EventsApplication {
 
 
     @Bean
-    public CommandLineRunner createDummyEvents(EventRepository eventRepository) {
+    public CommandLineRunner createDummyEvents(EventRepository eventRepository, LdapTemplate ldapTemplate) {
         return (args) -> {
 
 
@@ -35,8 +36,9 @@ public class EventsApplication {
             }
 
             for (EventsModel em : eventRepository.findAll()) {
-                System.out.println("> " + em.toString());
+                System.out.println("> " + em.getsName());
             }
+
         };
     }
 }

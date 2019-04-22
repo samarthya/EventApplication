@@ -1,5 +1,8 @@
 package me.samarthya.events.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.HashSet;
@@ -16,28 +19,46 @@ public class SessionModel {
     @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
+    @JsonProperty("id")
     private int iId;
 
 
     @Column(name = "name")
+    @JsonProperty("name")
     private String sName;
 
     @Column(name = "presenter")
+    @JsonProperty("presenter")
     private String sPresenter;
 
     @Column(name = "duration")
+    @JsonProperty("duration")
     private int iDuration;
 
     @Column(name = "level")
+    @JsonProperty("level")
     private String sLevel;
 
     @Column(name = "abstract", length = 520)
+    @JsonProperty("abstract")
     private String sAbstract;
 
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "fkvid")
+    @JsonProperty("voters")
     private Set<VotersModel> voters = new HashSet<>();
+
+    public long getFksid() {
+        return fksid;
+    }
+
+    public void setFksid(long fksid) {
+        this.fksid = fksid;
+    }
+
+    @JsonProperty("eventId")
+    private long fksid;
 
     public SessionModel(String sName, String sPresenter,
                         int iDuration, String sLevel,

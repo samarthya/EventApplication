@@ -1,6 +1,11 @@
 package me.samarthya.events.model;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSetter;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -16,35 +21,45 @@ public class EventsModel {
     @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "eventid")
-    private int iEventId;
+    @JsonProperty("id")
+    private long lEventId;
 
     @Column(name = "name")
+    @JsonProperty("name")
     private String sName;
 
     @Column(name = "date")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/mm/yy hh:mm:ss")
+    @JsonProperty("date")
     private Date dDate;
 
     @Column(name = "time")
+    @JsonProperty("time")
     private String sTime;
 
     @Column(name = "price")
+    @JsonProperty("price")
     private double dPrice;
 
     @Column(name = "imageUrl")
+    @JsonProperty("imageUrl")
     private String urlImage;
 
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "fklocationid")
+    @JsonProperty("location")
     private LocationModel locationModel;
 
 
     @Column(name = "onlineUrl")
+    @JsonProperty("onlineUrl")
     private String urlOnlineLocation;
 
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "fksid")
+    @JsonProperty("sessions")
     private Set<SessionModel> oSessions = new HashSet<>();
 
 
@@ -91,6 +106,7 @@ public class EventsModel {
         return locationModel;
     }
 
+    @JsonSetter("location")
     public void setLocationModel(LocationModel locationModel) {
         this.locationModel = locationModel;
     }
@@ -99,6 +115,7 @@ public class EventsModel {
         return oSessions;
     }
 
+    @JsonSetter("sessions")
     public void setoSessions(Set<SessionModel> oSessions) {
         if (oSessions != null) {
             this.oSessions.addAll(oSessions);
@@ -118,7 +135,7 @@ public class EventsModel {
     @Override
     public String toString() {
         return "EventsModel{" +
-                "iEventId=" + iEventId +
+                "lEventId=" + lEventId +
                 ", sName='" + sName + '\'' +
                 ", dDate=" + dDate +
                 ", sTime='" + sTime + '\'' +
@@ -130,26 +147,32 @@ public class EventsModel {
                 '}';
     }
 
-    public int getiEventId() {
-        return iEventId;
+    @JsonGetter("id")
+    public long getlEventId() {
+        return lEventId;
     }
 
-    public void setiEventId(int iEventId) {
-        this.iEventId = iEventId;
+    @JsonSetter("id")
+    public void setlEventId(long lEventId) {
+        this.lEventId = lEventId;
     }
 
+    @JsonGetter("name")
     public String getsName() {
         return sName;
     }
 
+    @JsonSetter("name")
     public void setsName(String sName) {
         this.sName = sName;
     }
+
 
     public Date getdDate() {
         return dDate;
     }
 
+    @JsonSetter("date")
     public void setdDate(Date dDate) {
         this.dDate = dDate;
     }
@@ -158,6 +181,7 @@ public class EventsModel {
         return sTime;
     }
 
+    @JsonSetter("time")
     public void setsTime(String sTime) {
         this.sTime = sTime;
     }
@@ -166,6 +190,7 @@ public class EventsModel {
         return dPrice;
     }
 
+    @JsonSetter("price")
     public void setdPrice(double dPrice) {
         this.dPrice = dPrice;
     }
@@ -174,6 +199,7 @@ public class EventsModel {
         return urlImage;
     }
 
+    @JsonSetter("imageUrl")
     public void setUrlImage(String urlImage) {
         this.urlImage = urlImage;
     }
@@ -182,6 +208,7 @@ public class EventsModel {
         return urlOnlineLocation;
     }
 
+    @JsonSetter("onlineUrl")
     public void setUrlOnlineLocation(String urlOnlineLocation) {
         this.urlOnlineLocation = urlOnlineLocation;
     }

@@ -1,5 +1,9 @@
 package me.samarthya.events.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSetter;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -11,15 +15,19 @@ public class LocationModel {
     @NotNull
     @Column(name = "locationid")
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonIgnore
     private int id;
 
     @Column(name = "address")
+    @JsonProperty("address")
     private String sAddress;
 
     @Column(name = "city")
+    @JsonProperty("city")
     private String sCity;
 
     @Column(name = "country")
+    @JsonProperty("country")
     private String sCountry;
 
 
@@ -47,6 +55,7 @@ public class LocationModel {
         return id;
     }
 
+    @JsonSetter("id")
     public void setId(int id) {
         this.id = id;
     }
@@ -55,6 +64,7 @@ public class LocationModel {
         return sAddress;
     }
 
+    @JsonSetter("address")
     public void setsAddress(String sAddress) {
         this.sAddress = sAddress;
     }
@@ -63,6 +73,7 @@ public class LocationModel {
         return sCity;
     }
 
+    @JsonSetter("city")
     public void setsCity(String sCity) {
         this.sCity = sCity;
     }
@@ -71,6 +82,7 @@ public class LocationModel {
         return sCountry;
     }
 
+    @JsonSetter("country")
     public void setsCountry(String sCountry) {
         this.sCountry = sCountry;
     }
