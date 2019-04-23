@@ -7,7 +7,9 @@ import org.springframework.security.ldap.userdetails.LdapUserDetailsImpl;
 
 import java.util.Collection;
 
-
+/**
+ * Authenticated Principal details.
+ */
 public class CustomUserDetails extends LdapUserDetailsImpl {
 
     private String cn;

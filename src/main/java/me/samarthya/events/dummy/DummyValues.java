@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Dummy value class
+ * Dummy value for the database constructor.
  */
 public class DummyValues {
 

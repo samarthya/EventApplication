@@ -109,7 +109,6 @@ public class LdapUserService implements BaseLdapNameAware {
             person.setLastName(context.getStringAttribute("sn"));
             person.setUid(context.getStringAttribute("uid"));
             person.setDisplayName(context.getStringAttribute("displayname"));
-            person.setPassword(context.getObjectAttribute("userpassword"));
             return person;
         }
     }

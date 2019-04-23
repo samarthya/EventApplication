@@ -15,9 +15,9 @@ import javax.naming.Name;
 public class UserModel {
 
     @JsonIgnore
+    @Id
     private Name id;
 
-    @JsonIgnore
     @JsonProperty("userName")
     private @Attribute(name = "uid") String uid;
 
@@ -31,9 +31,7 @@ public class UserModel {
     @JsonProperty("lastName")
     private  @Attribute(name = "sn") String lastName;
 
-    @JsonIgnore
-    @JsonProperty("password")
-    private @Attribute(name = "userpassword") Object password;
+
 
     public UserModel(String uid, String firstName, String displayName, String lastName) {
         this.uid = uid;
@@ -72,13 +70,6 @@ public class UserModel {
         return uid;
     }
 
-    public Object getPassword() {
-        return password;
-    }
-
-    public void setPassword(Object password) {
-        this.password = password;
-    }
 
 
     public void setUid(String uid) {
